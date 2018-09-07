@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sile>
+    <properties>
+        <propertie key="url">https://raw.githubusercontent.com/venwyhk/tuangou-vu-admin/master</propertie>
+        <propertie key="javaPkgUrl">{url}/src/main/java/org/sulei/vu</propertie>
+        <propertie key="resourcesUrl">{url}/src/main/resources</propertie>
+    </properties>
+    <sources>
+        <directory name="src/main/java" type="source">
+            <directory name="org/sulei/vu" type="package">
+                <directory name="entity" type="folder">
+                    <file url="{javaPkgUrl}/entity/UserEntity.java"/>
+                </directory>
+                <directory name="repository" type="folder">
+                    <file url="{javaPkgUrl}/repository/UserRepo.java"/>
+                </directory>
+                <directory name="service" type="folder">
+                    <file url="{javaPkgUrl}/service/VirtualUserDTO.java"/>
+                    <file url="{javaPkgUrl}/service/VirtualUserService.java"/>
+                    <directory name="impl" type="folder">
+                        <file url="{javaPkgUrl}/service/impl/VirtualUserServiceImpl.java"/>
+                    </directory>
+                </directory>
+                <directory name="utils" type="folder">
+                    <file url="{javaPkgUrl}/utils/Base64Util.java"/>
+                </directory>
+                <file url="{javaPkgUrl}/Application.java"/>
+                <file url="{javaPkgUrl}/AutoConfig.java"/>
+            </directory>
+        </directory>
+        <directory name="src/main/resources" type="package">
+            <directory name="static" type="folder">
+                <file url="{resourcesUrl}/static/vuadmin.html"/>
+            </directory>
+            <file url="{resourcesUrl}/application.properties"/>
+        </directory>
+        <file url="{url}/pom.xml"/>
+        <file url="{url}/.gitignore"/>
+    </sources>
+</sile>
