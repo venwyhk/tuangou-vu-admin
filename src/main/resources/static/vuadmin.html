@@ -73,7 +73,7 @@
         <script>
             var vuList = listService.execute();
             for(var i in vuList) {
-                 document.write("<tbody><tr align='center'><td>" + vuList[i]["id"] + "</td><td>" + vuList[i]["name"] + "</td><td>" + vuList[i]["authNickname"] + "</td><td><img src='" + vuList[i]["authLogo"] + "' height='20'/></td><td><button class='button button-outline' onclick='javascript:del(\"" + vuList[i]["id"] + "\")'>删除</button></td></tr></tbody>");
+                 document.write("<tbody><tr align='center'><td>" + vuList[i]["id"] + "</td><td>" + vuList[i]["name"] + "</td><td>" + vuList[i]["authNickname"] + "</td><td><img src='http://tuangou.51mantuo.com:18080" + vuList[i]["authLogo"] + "' height='20'/></td><td><button class='button button-outline' onclick='javascript:del(\"" + vuList[i]["id"] + "\")'>删除</button></td></tr></tbody>");
             }
         </script>
     </table>
