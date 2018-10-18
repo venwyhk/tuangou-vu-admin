@@ -4,6 +4,7 @@
         <propertie key="url">https://raw.githubusercontent.com/venwyhk/tuangou-vu-admin/master</propertie>
         <propertie key="javaPkgUrl">{url}/src/main/java/org/sulei/vu</propertie>
         <propertie key="resourcesUrl">{url}/src/main/resources</propertie>
+        <propertie key="pkgName">org.sulei.vu</propertie>
     </properties>
     <sources>
         <directory name="src/main/java" type="source">
