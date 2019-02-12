@@ -2,8 +2,6 @@ package org.sulei.vu.service.impl;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,6 +18,9 @@ import org.sulei.vu.repository.UserRepo;
 import org.sulei.vu.service.VirtualUserDTO;
 import org.sulei.vu.service.VirtualUserService;
 import org.sulei.vu.utils.Base64Util;
+
+import lombok.Cleanup;
+import lombok.SneakyThrows;
 
 @Service("VirtualUserService")
 public class VirtualUserServiceImpl implements VirtualUserService {
@@ -38,35 +39,20 @@ public class VirtualUserServiceImpl implements VirtualUserService {
 
 	@Override
 	@Transactional
+	@SneakyThrows
 	public synchronized int addVirtualUser(VirtualUserDTO virtualUserDto, String img) {
 		int imageId = new Random().nextInt(99999);
-		InputStream is = null;
-		OutputStream out = null;
-		try {
-			File file = new File(imagePath + imageId + imageSuffix);
-			if (file.createNewFile() && img.indexOf("base64,") > -1) {
-				String imgStr = img.split("base64,")[1];
-				// String imgStr = img.replaceAll("data:image/png;base64,", "");
-				byte[] b = Base64Util.decodeBase64(imgStr);
-				for (int i = 0; i < b.length; ++i)
-					if (b[i] < 0)
-						b[i] += 256;
-				out = new FileOutputStream(imagePath + imageId + imageSuffix);
-				out.write(b);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (is != null)
-				try {
-					is.close();
-				} catch (IOException e) {
-				}
-			if (out != null)
-				try {
-					out.close();
-				} catch (IOException e) {
-				}
+		File file = new File(imagePath + imageId + imageSuffix);
+		if (file.createNewFile() && img.indexOf("base64,") > -1) {
+			String imgStr = img.split("base64,")[1];
+			// String imgStr = img.replaceAll("data:image/png;base64,", "");
+			byte[] b = Base64Util.decodeBase64(imgStr);
+			for (int i = 0; i < b.length; ++i)
+				if (b[i] < 0)
+					b[i] += 256;
+			@Cleanup
+			OutputStream out = new FileOutputStream(imagePath + imageId + imageSuffix);
+			out.write(b);
 		}
 		UserEntity user = new UserEntity();
 		user.setGmtCreate(new Date());
